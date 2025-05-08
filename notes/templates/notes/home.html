@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Notes Organizer</title>
+</head>
+<body>
+    <h1>📒 Smart Notes Organizer</h1>
+
+    {% for note in notes %}
+        <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+            <h2>{{ note.title }}</h2>
+            <p>{{ note.content }}</p>
+            <p><b>Tags:</b> {{ note.tags }} | <b>Category:</b> {{ note.category }}</p>
+            <small>Last Updated: {{ note.updated_at }}</small>
+        </div>
+    {% empty %}
+        <p>No notes available.</p>
+    {% endfor %}
+</body>
+</html>
