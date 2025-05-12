@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Smart Notes Organizer</title>
-</head>
-<body>
-    <h1>📒 Smart Notes Organizer</h1>
+{% extends 'notes/base.html' %}
+{% block content %}
+<a href="{% url 'create_note' %}">+ Add Note</a>
+<form method="get">
+    <input type="text" name="q" placeholder="Search notes...">
+    <button type="submit">Search</button>
+</form>
+{% for note in notes %}
+    <h3>{{ note.title }}</h3>
+    <p>{{ note.content }}</p>
+    <p>Tags: {{ note.tags }} | Category: {{ note.category }}</p>
+    <a href="{% url 'edit_note' note.pk %}">Edit</a> |
+    <a href="{% url 'delete_note' note.pk %}">Delete</a>
+    <hr>
+{% endfor %}
+{% endblock %}
 
-    {% for note in notes %}
-        <div style="border:1px solid #ccc; padding:10px; margin:10px;">
-            <h2>{{ note.title }}</h2>
-            <p>{{ note.content }}</p>
-            <p><b>Tags:</b> {{ note.tags }} | <b>Category:</b> {{ note.category }}</p>
-            <small>Last Updated: {{ note.updated_at }}</small>
-        </div>
-    {% empty %}
-        <p>No notes available.</p>
-    {% endfor %}
-</body>
-</html>

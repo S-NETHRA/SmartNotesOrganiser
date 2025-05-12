@@ -1,0 +1,6 @@
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ note.title }}"?</p>
+    <button type="submit">Yes, delete</button>
+</form>
+
